@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet">
+    <meta property="og:image" content="img/Shark.png" />
+    <title> Catch the Shark </title>
+    <meta name="description" content="Shark">
+    <meta name="subject" content="Shark">
+
+    <script language="JavaScript">
+      /**
+        * Disable right-click of mouse, F12 key, and save key combinations on page
+        * By Arthur Gareginyan (arthurgareginyan@gmail.com)
+        * For full source code, visit http://www.mycyberuniverse.com
+        */
+        window.onload = function() {
+          document.addEventListener("contextmenu", function(e){
+            e.preventDefault();
+          }, false);
+          document.addEventListener("keydown", function(e) {
+        //document.onkeydown = function(e) {
+          // "I" key
+          if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
+            disabledEvent(e);
+          }
+          // "J" key
+          if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
+            disabledEvent(e);
+          }
+          // "S" key + macOS
+          if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+            disabledEvent(e);
+          }
+          // "U" key
+          if (e.ctrlKey && e.keyCode == 85) {
+            disabledEvent(e);
+          }
+          // "F12" key
+          if (event.keyCode == 123) {
+            disabledEvent(e);
+          }
+        }, false);
+          function disabledEvent(e){
+            if (e.stopPropagation){
+              e.stopPropagation();
+            } else if (window.event){
+              window.event.cancelBubble = true;
+            }
+            e.preventDefault();
+            return false;
+          }
+        };
+      </script>
+
+      <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+      <script src="/__/firebase/init.js"></script>
+      <script>
+
+        import * as firebase from "firebase";
+        // Initialize Firebase
+        var config = {
+          apiKey: "AIzaSyCCYdFVZuRWo9DKhBZXW1KqOlWvUt1neZE",
+          authDomain: "whack-a-shark.firebaseapp.com",
+          databaseURL: "https://whack-a-shark.firebaseio.com",
+          projectId: "whack-a-shark",
+          storageBucket: "whack-a-shark.appspot.com",
+          messagingSenderId: "887405720505"
+        };
+        var firebaseApp = firebase.initializeApp(config);
+
+        export default firebaseApp;
+      </script>
+      <script src="js/jquery.min.js"></script>
+      <script src="js/jquery-ui.js"></script>
+      <script src="js/lite-touch-event-converter.js"></script>
+      <script src="js/firebase.js"></script>
+      <script src="js/sweetalert2.min.js"></script>
+      <script src="js/scripts.js" charset="utf-8"></script>
+      <link href="css/sweetalert2.min.css" rel="stylesheet">
+      <link href="css/style.css" rel="stylesheet">
+  </head>
+
+  <body oncontextmenu="return false;">
+
+    <div class="begin">
+      <h1><span id="count_num">Tap to Begin</span></h1>
+    </div>
+
+    <span id="ticker"></span>
+
+    <div class="game-over notice">
+      <h1>Game over! <br />  </h1>
+
+      <div id="score">
+        <strong>Score:</strong>
+        <h1 id="points">0</h1>
+        <button class="btn-normal" id="send_score">Submit Score</button>
+        <button class="btn-normal" id="view_scores">Recent Scores</button>
+      </div>
+      <h3 class="restart">Play again?</h3>
+    </div>
+
+    <div id="leaderboard" class="score_board">
+      <h4>Recent Scores</h4>
+      <ul id="msgList">
+      </ul>
+    </div>
+
+    <img src="img/Shark.png" class="Shark" hidden="hidden" id="shark" />
+
+    <audio src="assets/jaws.mp3" type="audio/mpeg" id="game-music" preload></audio>
+    <audio src="assets/bloop.wav" id="bloop" preload></audio>
+
+  </body>
+
+</html>
